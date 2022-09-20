@@ -10,9 +10,7 @@ function App() {
   const [error,setError] = useState(null);
 
 
-  useEffect(()=>{
-    fetchMoviesHandler();
-  }, [fetchMoviesHandler]);
+
 
 
   const fetchMoviesHandler= useCallback(async() => {
@@ -42,8 +40,11 @@ function App() {
       setError(error.message)
     }
     setIsLoading(false);
-  }, []
-  )
+  }, [] ); 
+
+  useEffect(()=>{
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
   let content = <p>No Movies Found Join The Dark Side</p>
 
   if(movies.length>0){
