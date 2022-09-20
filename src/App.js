@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -15,7 +15,7 @@ function App() {
   }, [fetchMoviesHandler]);
 
 
-  async function fetchMoviesHandler() {
+  const fetchMoviesHandler= useCallback(async() => {
     setIsLoading(true);
     setError(null);
     try{
@@ -42,8 +42,8 @@ function App() {
       setError(error.message)
     }
     setIsLoading(false);
-  }
-
+  }, []
+  )
   let content = <p>No Movies Found Join The Dark Side</p>
 
   if(movies.length>0){
